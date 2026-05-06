@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 import datetime
+import pytz　　　　　　　　　　　#追加　
+
+jst=pytz.timezome("Asia/Tokyo")  #変更
 
 st.title("学生用：出席入力ページ")
 
@@ -44,7 +47,7 @@ if student_id:
                 new_row = pd.DataFrame({
                     "id": [student_id],
                     "name": [student_name],
-                    "time": [datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")]
+                    "time": [datetime.datetime.now(jst).strftime("%Y-%m-%d %H:%M:%S")]
                 })
 
                 df = pd.concat([df, new_row], ignore_index=True)
